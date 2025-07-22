@@ -1,5 +1,7 @@
+import { Stack, SvgIcon } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
@@ -10,17 +12,29 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { useState } from 'react';
-import { SvgIcon } from '@mui/material';
-import { Outlet } from 'react-router';
+import { Outlet, Link as RouterLink } from 'react-router';
 
-interface Props {}
+const navItemsWithLinks = [
+  {
+    label: 'Dashboard',
+    href: '/',
+  },
+  {
+    label: 'Payments',
+    href: '/payments',
+  },
+  {
+    label: 'Reports',
+    href: '/reports',
+  },
+  {
+    label: 'Support',
+    href: '/support',
+  },
+];
 
-const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
-
-const LayoutDrawerAppBar = (props: Props) => {
+const LayoutDrawerAppBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -30,14 +44,18 @@ const LayoutDrawerAppBar = (props: Props) => {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Module Federation DEMO
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+        {navItemsWithLinks.map((item) => (
+          <ListItem key={item.href} disablePadding>
+            <ListItemButton
+              sx={{ textAlign: 'center' }}
+              component={RouterLink}
+              to={item.href}
+            >
+              <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -46,16 +64,16 @@ const LayoutDrawerAppBar = (props: Props) => {
   );
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Stack>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" position="sticky">
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { md: 'none' } }}
           >
             <SvgIcon>
               <svg
@@ -63,7 +81,6 @@ const LayoutDrawerAppBar = (props: Props) => {
                 viewBox="0 0 24 24"
                 width="1em"
                 height="1em"
-                {...props}
               >
                 <path
                   fill="currentColor"
@@ -75,14 +92,19 @@ const LayoutDrawerAppBar = (props: Props) => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}
           >
-            MUI
+            Module Federation DEMO
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+            {navItemsWithLinks.map((item) => (
+              <Button
+                key={item.href}
+                component={RouterLink}
+                to={item.href}
+                sx={{ color: '#fff' }}
+              >
+                {item.label}
               </Button>
             ))}
           </Box>
@@ -97,10 +119,10 @@ const LayoutDrawerAppBar = (props: Props) => {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { xs: 'block', md: 'none' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: drawerWidth,
+              width: '70vw',
             },
           }}
         >
@@ -111,7 +133,7 @@ const LayoutDrawerAppBar = (props: Props) => {
         <Toolbar />
         <Outlet />
       </Box>
-    </Box>
+    </Stack>
   );
 };
 
