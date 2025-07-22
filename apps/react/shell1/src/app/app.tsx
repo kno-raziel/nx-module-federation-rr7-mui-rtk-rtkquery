@@ -1,13 +1,12 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router';
-import LayoutNavigation from './layouts/LayoutNavigation';
-import NxWelcome from './nx-welcome';
-import { theme } from 'theme/Theme';
 import { Provider } from 'react-redux';
+import { createBrowserRouter, RouterProvider } from 'react-router';
+import { theme } from 'theme/Theme';
+import LayoutDrawerAppBar from './layouts/LayoutDrawerAppBar';
+import NxWelcome from './nx-welcome';
 import { store } from './store';
 import { rootReducer } from './store/slices';
 import { testSlice } from './store/slices/testSlice';
-import LayoutDrawerAppBar from './layouts/LayoutDrawerAppBar';
 
 console.log('themasdase', theme());
 
@@ -58,10 +57,44 @@ const routes = [
           },
 
           {
-            path: '/myremote1/*',
+            path: '/payments/*',
             element: (
               <Suspense fallback={<div>Loading myremote1...</div>}>
-                {/* <Myremote1 basename="/myremote1" /> */}
+                <span role="img" aria-label="construction">
+                  🚧
+                </span>{' '}
+                Payments{' '}
+                <span role="img" aria-label="construction">
+                  🚧
+                </span>
+              </Suspense>
+            ),
+          },
+          {
+            path: '/reports/*',
+            element: (
+              <Suspense fallback={<div>Loading myremote1...</div>}>
+                <span role="img" aria-label="construction">
+                  🚧
+                </span>{' '}
+                Reports{' '}
+                <span role="img" aria-label="construction">
+                  🚧
+                </span>
+              </Suspense>
+            ),
+          },
+          {
+            path: '/support/*',
+            element: (
+              <Suspense fallback={<div>Loading myremote1...</div>}>
+                <span role="img" aria-label="construction">
+                  🚧
+                </span>{' '}
+                Support{' '}
+                <span role="img" aria-label="construction">
+                  🚧
+                </span>
               </Suspense>
             ),
           },
