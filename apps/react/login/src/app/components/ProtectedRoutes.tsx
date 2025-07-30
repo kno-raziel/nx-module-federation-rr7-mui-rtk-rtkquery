@@ -1,16 +1,12 @@
+import { Store } from '@reduxjs/toolkit';
 import { Navigate, Outlet } from 'react-router';
-import { createStore, LoginStore, useAppSelector } from '../store';
-
-import { useMemo } from 'react';
-import { Provider } from 'react-redux';
-import { RootReducer } from '../store/slices';
+import WithAsyncSlice from 'store/WithAsyncSlice';
+import { useAppSelector } from '../store';
+import { authSlice } from '../store/slices/authSlice';
 
 const Guard = () => {
   const auth = useAppSelector((state) => state.auth);
 
-  const state = useAppSelector((state) => state);
-
-  console.log(state);
   console.log('ProtectedRoutes - auth', auth);
 
   // Check if auth state is undefined, null, or logged is false
@@ -23,21 +19,15 @@ const Guard = () => {
 };
 
 interface AppProps {
-  shellStore: LoginStore | undefined;
-  shellRootReducer: RootReducer | undefined;
+  store: Store;
 }
 
-export function ProtectedRoutes({ shellStore, shellRootReducer }: AppProps) {
-  const store = useMemo(
-    () => createStore({ shellStore, shellRootReducer }),
-    [shellStore, shellRootReducer]
-  );
-
+const ProtectedRoutes = ({ store }: AppProps) => {
   return (
-    <Provider store={store}>
+    <WithAsyncSlice store={store} slice={authSlice}>
       <Guard />
-    </Provider>
+    </WithAsyncSlice>
   );
-}
+};
 
 export default ProtectedRoutes;

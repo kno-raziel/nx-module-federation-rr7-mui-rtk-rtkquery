@@ -9,6 +9,9 @@
       "path": "../../libs/theme"
     },
     {
+      "path": "../store"
+    },
+    {
       "path": "./tsconfig.app.json"
     },
     {

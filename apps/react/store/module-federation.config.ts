@@ -1,12 +1,12 @@
 import { ModuleFederationConfig } from '@nx/module-federation';
 
 const config: ModuleFederationConfig = {
-  name: 'login',
+  name: 'store',
   exposes: {
-    './Module': './src/remote-entry.ts',
-    './ProtectedRoutes': './src/app/components/ProtectedRoutes.tsx',
+    './Hooks': './src/app/store/hooks.ts',
+    './Store': './src/app/store/index.ts',
+    './WithAsyncSlice': './src/app/components/WithAsyncSlice.tsx',
   },
-  remotes: ['store'],
 };
 
 /**

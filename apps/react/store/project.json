@@ -1,13 +1,13 @@
 {
-  "name": "theme",
+  "name": "store",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/react/theme/src",
+  "sourceRoot": "apps/react/store/src",
   "projectType": "application",
   "tags": [],
   "targets": {
     "serve": {
       "options": {
-        "port": 4203
+        "port": 4201
       },
       "dependsOn": ["typecheck", "shell1:serve"]
     },

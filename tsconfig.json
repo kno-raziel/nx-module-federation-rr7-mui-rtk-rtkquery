@@ -17,6 +17,9 @@
     },
     {
       "path": "./apps/react/login"
+    },
+    {
+      "path": "./apps/react/store"
     }
   ]
 }
