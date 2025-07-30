@@ -1,28 +1,17 @@
-import { useMemo } from 'react';
-import { Provider } from 'react-redux';
+import { Store } from '@reduxjs/toolkit';
+import WithAsyncSlice from 'store/WithAsyncSlice';
 import Routes from './routes';
-import { LoginStore, createStore } from './store';
-import { RootReducer } from './store/slices';
+import { authSlice } from './store/slices/authSlice';
 
 interface AppProps {
-  shellStore: LoginStore | undefined;
-  shellRootReducer: RootReducer | undefined;
+  store: Store;
 }
 
-export function App({ shellStore, shellRootReducer }: AppProps) {
-  console.log('shellStore', shellStore?.getState());
-
-  const store = useMemo(
-    () => createStore({ shellStore, shellRootReducer }),
-    [shellStore, shellRootReducer]
-  );
-
-  console.log('store', store?.getState());
-
+export function App({ store }: AppProps) {
   return (
-    <Provider store={store}>
+    <WithAsyncSlice store={store} slice={authSlice}>
       <Routes />
-    </Provider>
+    </WithAsyncSlice>
   );
 }
 

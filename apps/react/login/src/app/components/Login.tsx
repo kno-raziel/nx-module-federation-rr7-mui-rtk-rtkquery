@@ -12,6 +12,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../store';
 import { logIn } from '../store/slices/authSlice';
 import { Navigate } from 'react-router';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 
 export function Login() {
   const [email, setEmail] = useState('');

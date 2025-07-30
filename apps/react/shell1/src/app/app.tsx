@@ -1,12 +1,12 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router';
+import setupStore from 'store/Store';
 import { theme } from 'theme/Theme';
 import LayoutDrawerAppBar from './layouts/LayoutDrawerAppBar';
 import NxWelcome from './nx-welcome';
-import { store } from './store';
-import { rootReducer } from './store/slices';
-import { testSlice } from './store/slices/testSlice';
+
+const store = setupStore();
 
 console.log('themasdase', theme());
 
@@ -15,16 +15,9 @@ const Login = lazy(() => import('login/Module'));
 const ProtectedRoutes = lazy(() => import('login/ProtectedRoutes'));
 
 const LoginWithStore = () => {
-  useEffect(() => {
-    rootReducer.inject({
-      reducerPath: 'laslasa',
-      reducer: testSlice.reducer,
-    });
-  }, []);
-
   return (
     <Suspense fallback={<div>Loading Login...</div>}>
-      <Login shellStore={store as any} shellRootReducer={rootReducer as any} />
+      <Login store={store} />
     </Suspense>
   );
 };
@@ -41,10 +34,7 @@ const routes = [
   {
     element: (
       <Suspense fallback={<div>Checking access...</div>}>
-        <ProtectedRoutes
-          shellStore={store as any}
-          shellRootReducer={rootReducer as any}
-        />
+        <ProtectedRoutes store={store} />
       </Suspense>
     ),
     children: [

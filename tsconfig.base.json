@@ -23,6 +23,11 @@
       "login/ProtectedRoutes": [
         "apps/react/login/src/app/components/ProtectedRoutes.tsx"
       ],
+      "store/Store": ["apps/react/store/src/app/store/index.ts"],
+      "store/Hooks": ["apps/react/store/src/app/store/hooks.ts"],
+      "store/WithAsyncSlice": [
+        "apps/react/store/src/app/components/WithAsyncSlice.tsx"
+      ],
       "theme/Module": ["apps/react/theme/src/remote-entry.ts"],
       "theme/Theme": ["apps/libs/theme/src/index.ts"]
     }

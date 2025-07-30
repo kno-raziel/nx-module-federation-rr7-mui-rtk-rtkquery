@@ -14,7 +14,7 @@ export default {
     publicPath: 'auto',
   },
   devServer: {
-    port: 4203,
+    port: 4201,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
@@ -30,7 +30,7 @@ export default {
       main: './src/main.ts',
       index: './src/index.html',
       baseHref: '/',
-      assets: [],
+      assets: ['./src/favicon.ico', './src/assets'],
       styles: [],
       outputHashing: process.env['NODE_ENV'] === 'production' ? 'all' : 'none',
       optimization: process.env['NODE_ENV'] === 'production',
