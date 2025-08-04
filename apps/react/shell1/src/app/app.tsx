@@ -1,8 +1,11 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { Provider } from 'react-redux';
-import { createBrowserRouter, RouterProvider } from 'react-router';
+import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router';
 import setupStore from 'store/Store';
 import { theme } from 'theme/Theme';
+import RemoteModuleErrorBoundary from './components/RemoteModuleErrorBoundary';
+import RouteErrorBoundary from './components/RouteErrorBoundary';
+import SuspenseWithSkeleton from './components/SuspenseWithSkeleton';
 import LayoutDrawerAppBar from './layouts/LayoutDrawerAppBar';
 import NxWelcome from './nx-welcome';
 
@@ -14,29 +17,28 @@ console.log('themasdase', theme());
 const Login = lazy(() => import('login/Module'));
 const ProtectedRoutes = lazy(() => import('login/ProtectedRoutes'));
 
-const LoginWithStore = () => {
-  return (
-    <Suspense fallback={<div>Loading Login...</div>}>
-      <Login store={store} />
-    </Suspense>
-  );
-};
-
-const routes = [
+const routes: RouteObject[] = [
   {
     path: '*',
     element: <p>not found</p>,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: '/login/*',
-    element: <LoginWithStore />,
+    element: (
+      <SuspenseWithSkeleton>
+        <Login store={store} />
+      </SuspenseWithSkeleton>
+    ),
+    errorElement: <RemoteModuleErrorBoundary />,
   },
   {
     element: (
-      <Suspense fallback={<div>Checking access...</div>}>
+      <SuspenseWithSkeleton>
         <ProtectedRoutes store={store} />
-      </Suspense>
+      </SuspenseWithSkeleton>
     ),
+    errorElement: <RouteErrorBoundary />,
     children: [
       {
         element: <LayoutDrawerAppBar />,
@@ -49,7 +51,7 @@ const routes = [
           {
             path: '/payments/*',
             element: (
-              <Suspense fallback={<div>Loading myremote1...</div>}>
+              <SuspenseWithSkeleton>
                 <span role="img" aria-label="construction">
                   🚧
                 </span>{' '}
@@ -57,13 +59,13 @@ const routes = [
                 <span role="img" aria-label="construction">
                   🚧
                 </span>
-              </Suspense>
+              </SuspenseWithSkeleton>
             ),
           },
           {
             path: '/reports/*',
             element: (
-              <Suspense fallback={<div>Loading myremote1...</div>}>
+              <SuspenseWithSkeleton>
                 <span role="img" aria-label="construction">
                   🚧
                 </span>{' '}
@@ -71,13 +73,13 @@ const routes = [
                 <span role="img" aria-label="construction">
                   🚧
                 </span>
-              </Suspense>
+              </SuspenseWithSkeleton>
             ),
           },
           {
             path: '/support/*',
             element: (
-              <Suspense fallback={<div>Loading myremote1...</div>}>
+              <SuspenseWithSkeleton>
                 <span role="img" aria-label="construction">
                   🚧
                 </span>{' '}
@@ -85,7 +87,7 @@ const routes = [
                 <span role="img" aria-label="construction">
                   🚧
                 </span>
-              </Suspense>
+              </SuspenseWithSkeleton>
             ),
           },
           {
