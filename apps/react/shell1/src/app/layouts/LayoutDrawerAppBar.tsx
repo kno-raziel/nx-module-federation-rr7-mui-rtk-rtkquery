@@ -17,7 +17,7 @@ import { Outlet, Link as RouterLink } from 'react-router';
 
 const navItemsWithLinks = [
   {
-    label: 'Dashboard',
+    label: 'Products',
     href: '/',
   },
   {

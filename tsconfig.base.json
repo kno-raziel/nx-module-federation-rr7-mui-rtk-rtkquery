@@ -23,8 +23,9 @@
       "login/ProtectedRoutes": [
         "apps/react/login/src/app/components/ProtectedRoutes.tsx"
       ],
-      "store/Store": ["apps/react/store/src/app/store/index.ts"],
+      "products/Module": ["apps/react/products/src/remote-entry.ts"],
       "store/Hooks": ["apps/react/store/src/app/store/hooks.ts"],
+      "store/Store": ["apps/react/store/src/app/store/index.ts"],
       "store/WithAsyncSlice": [
         "apps/react/store/src/app/components/WithAsyncSlice.tsx"
       ],

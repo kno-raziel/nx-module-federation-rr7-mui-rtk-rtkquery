@@ -30,19 +30,5 @@
     "eslint.config.cjs",
     "eslint.config.mjs"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
-  "references": [
-    {
-      "path": "../products/tsconfig.app.json"
-    },
-    {
-      "path": "../login/tsconfig.app.json"
-    },
-    {
-      "path": "../../libs/theme/tsconfig.lib.json"
-    },
-    {
-      "path": "../store/tsconfig.app.json"
-    }
-  ]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
 }
