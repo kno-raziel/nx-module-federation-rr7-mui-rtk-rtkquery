@@ -1,3 +1,4 @@
+import { createTheme } from '@mui/material/styles';
 import { ThemeOptions } from '@mui/material/styles';
 
 export const themeOptions: ThemeOptions = {
@@ -26,6 +27,6 @@ export const themeOptions: ThemeOptions = {
   },
 };
 
-export function theme(): string {
-  return '❤️ asdasd a';
+export function theme(): ThemeOptions {
+  return createTheme(themeOptions);
 }
