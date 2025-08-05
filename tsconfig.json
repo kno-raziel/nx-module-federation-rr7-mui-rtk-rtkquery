@@ -20,6 +20,9 @@
     },
     {
       "path": "./apps/react/store"
+    },
+    {
+      "path": "./apps/react/products"
     }
   ]
 }

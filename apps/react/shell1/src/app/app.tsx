@@ -7,15 +7,17 @@ import RemoteModuleErrorBoundary from './components/RemoteModuleErrorBoundary';
 import RouteErrorBoundary from './components/RouteErrorBoundary';
 import SuspenseWithSkeleton from './components/SuspenseWithSkeleton';
 import LayoutDrawerAppBar from './layouts/LayoutDrawerAppBar';
-import NxWelcome from './nx-welcome';
+import { ThemeProvider } from '@mui/material';
 
 const store = setupStore();
+const customTheme = theme();
 
-console.log('themasdase', theme());
+console.log('customTheme', customTheme);
 
 // Lazy components
 const Login = lazy(() => import('login/Module'));
 const ProtectedRoutes = lazy(() => import('login/ProtectedRoutes'));
+const Products = lazy(() => import('products/Module'));
 
 const routes: RouteObject[] = [
   {
@@ -45,7 +47,11 @@ const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            element: <NxWelcome title="shell" />,
+            element: (
+              <SuspenseWithSkeleton>
+                <Products />
+              </SuspenseWithSkeleton>
+            ),
           },
 
           {
@@ -105,7 +111,9 @@ const router = createBrowserRouter(routes, {});
 export function App() {
   return (
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <ThemeProvider theme={customTheme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </Provider>
   );
 }
