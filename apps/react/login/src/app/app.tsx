@@ -1,15 +1,10 @@
-import { Store } from '@reduxjs/toolkit';
 import WithAsyncSlice from 'store/WithAsyncSlice';
 import Routes from './routes';
 import { authSlice } from './store/slices/authSlice';
 
-interface AppProps {
-  store: Store;
-}
-
-export function App({ store }: AppProps) {
+export function App() {
   return (
-    <WithAsyncSlice store={store} slice={authSlice}>
+    <WithAsyncSlice slices={[authSlice]}>
       <Routes />
     </WithAsyncSlice>
   );
