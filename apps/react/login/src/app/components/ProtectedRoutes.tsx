@@ -1,4 +1,3 @@
-import { Store } from '@reduxjs/toolkit';
 import { Navigate, Outlet } from 'react-router';
 import WithAsyncSlice from 'store/WithAsyncSlice';
 import { useAppSelector } from '../store';
@@ -6,8 +5,6 @@ import { authSlice } from '../store/slices/authSlice';
 
 const Guard = () => {
   const auth = useAppSelector((state) => state.auth);
-
-  console.log('ProtectedRoutes - auth', auth);
 
   // Check if auth state is undefined, null, or logged is false
   if (!auth || !auth.logged) {
@@ -18,13 +15,9 @@ const Guard = () => {
   return <Outlet />;
 };
 
-interface AppProps {
-  store: Store;
-}
-
-const ProtectedRoutes = ({ store }: AppProps) => {
+const ProtectedRoutes = () => {
   return (
-    <WithAsyncSlice store={store} slice={authSlice}>
+    <WithAsyncSlice slices={[authSlice]}>
       <Guard />
     </WithAsyncSlice>
   );

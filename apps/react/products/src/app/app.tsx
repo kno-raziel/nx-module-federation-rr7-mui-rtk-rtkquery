@@ -1,17 +1,13 @@
-import { Provider } from 'react-redux';
+import { Slice } from '@reduxjs/toolkit';
+import WithAsyncSlice from 'store/WithAsyncSlice';
 import Products from './components/Products';
-import { store } from './store';
-import { useTheme } from '@mui/material';
+import { productsApi } from './store/services/products';
 
 export function App() {
-  const theme = useTheme();
-
-  console.log('theme', theme);
-
   return (
-    <Provider store={store}>
+    <WithAsyncSlice slices={[productsApi as unknown as Slice]}>
       <Products />
-    </Provider>
+    </WithAsyncSlice>
   );
 }
 
