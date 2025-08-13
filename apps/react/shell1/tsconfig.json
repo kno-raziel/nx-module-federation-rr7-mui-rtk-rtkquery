@@ -9,10 +9,7 @@
       "path": "../login"
     },
     {
-      "path": "../../libs/theme"
-    },
-    {
-      "path": "../store"
+      "path": "../theme"
     },
     {
       "path": "./tsconfig.app.json"
