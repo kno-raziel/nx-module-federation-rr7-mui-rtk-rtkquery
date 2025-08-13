@@ -18,9 +18,7 @@
     {
       "plugin": "@nx/js/typescript",
       "options": {
-        "typecheck": {
-          "targetName": "typecheck"
-        },
+        "typecheck": { "targetName": "typecheck" },
         "build": {
           "targetName": "build",
           "configName": "tsconfig.lib.json",
@@ -29,18 +27,8 @@
         }
       }
     },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      }
-    },
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
+    { "plugin": "@nx/jest/plugin", "options": { "targetName": "test" } },
     {
       "plugin": "@nx/react/router-plugin",
       "options": {
@@ -65,11 +53,7 @@
     {
       "plugin": "@nx/js/typescript",
       "include": ["apps/libs/theme/*"],
-      "options": {
-        "typecheck": {
-          "targetName": "typecheck"
-        }
-      },
+      "options": { "typecheck": { "targetName": "typecheck" } },
       "exclude": ["apps/libs/theme/*"]
     }
   ],
@@ -79,17 +63,9 @@
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
-    "test": {
-      "dependsOn": ["^build"]
-    },
+    "test": { "dependsOn": ["^build"] },
     "@nx/rspack:rspack": {
-      "inputs": [
-        "production",
-        "^production",
-        {
-          "env": "NX_MF_DEV_REMOTES"
-        }
-      ],
+      "inputs": ["production", "^production", { "env": "NX_MF_DEV_REMOTES" }],
       "dependsOn": ["^build"],
       "cache": true
     }
@@ -102,13 +78,9 @@
         "linter": "eslint",
         "bundler": "rspack"
       },
-      "component": {
-        "style": "css"
-      },
-      "library": {
-        "style": "css",
-        "linter": "eslint"
-      }
+      "component": { "style": "css" },
+      "library": { "style": "css", "linter": "eslint" }
     }
-  }
+  },
+  "nxCloudId": "689d07066481f5da60570acc"
 }
