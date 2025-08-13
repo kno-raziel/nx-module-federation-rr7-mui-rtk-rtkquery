@@ -29,8 +29,7 @@
       "store/WithAsyncSlice": [
         "apps/react/store/src/app/components/WithAsyncSlice.tsx"
       ],
-      "theme/Module": ["apps/react/theme/src/remote-entry.ts"],
-      "theme/Theme": ["apps/libs/theme/src/index.ts"]
+      "theme/Theme": ["apps/react/theme/src/main.ts"]
     }
   }
 }

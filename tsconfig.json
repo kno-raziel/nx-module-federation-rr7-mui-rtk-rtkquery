@@ -7,13 +7,7 @@
       "path": "./apps/react/shell1"
     },
     {
-      "path": "./apps/libs/theme"
-    },
-    {
       "path": "./apps/react/theme"
-    },
-    {
-      "path": "./apps/libs/theme"
     },
     {
       "path": "./apps/react/login"

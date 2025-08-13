@@ -39,10 +39,7 @@
       "path": "../login/tsconfig.app.json"
     },
     {
-      "path": "../../libs/theme/tsconfig.lib.json"
-    },
-    {
-      "path": "../store/tsconfig.app.json"
+      "path": "../theme/tsconfig.app.json"
     }
   ]
 }

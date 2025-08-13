@@ -3,8 +3,7 @@ import { ModuleFederationConfig } from '@nx/module-federation';
 const config: ModuleFederationConfig = {
   name: 'theme',
   exposes: {
-    './Module': './src/remote-entry.ts',
-    './Theme': '../../../apps/libs/theme/src/index.ts',
+    './Theme': './src/main.ts',
   },
 };
 
